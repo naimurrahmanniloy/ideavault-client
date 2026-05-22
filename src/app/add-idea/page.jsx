@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Input, Label, Separator } from "@heroui/react";
 import { ShieldCheck } from "lucide-react";
+import { SiGoogledocs } from "react-icons/si";
+import { IoRocketOutline } from "react-icons/io5";
 
 const AddIdeaPage = () => {
   return (
@@ -24,7 +26,11 @@ const AddIdeaPage = () => {
           <div className="lg:col-span-2 space-y-8">
             {/* Core Concept */}
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm">
-              <h2 className="text-3xl font-bold mb-6">Core Concept</h2>
+              <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
+                {" "}
+                <IoRocketOutline className="text-[#4441CC]" />
+                Core Concept
+              </h2>
 
               <div className="space-y-5">
                 <div className="flex flex-col gap-8">
@@ -34,7 +40,7 @@ const AddIdeaPage = () => {
                     id="title"
                     placeholder="e.g. Decentralized Green Energy Grid"
                     type="text"
-                    className="h-10 bg-[#F2F3FF]"
+                    className="h-10 bg-[#F2F3FF] "
                   />
                 </div>
 
@@ -52,7 +58,10 @@ const AddIdeaPage = () => {
 
             {/* Detailed Description */}
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm">
-              <h2 className="text-3xl font-bold mb-6">Detailed Description</h2>
+              <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
+                <SiGoogledocs className="text-[#4441CC]" />
+                Detailed Description
+              </h2>
 
               <textarea
                 placeholder="Expand on the mechanics, vision, and roadmap..."
@@ -67,14 +76,26 @@ const AddIdeaPage = () => {
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm">
               <h2 className="text-xl font-semibold mb-5">Category</h2>
 
-              <Input placeholder="Tech" className="h-12 bg-[#F2F3FF]" />
+              <Input placeholder="Tech" className="h-12 bg-[#F2F3FF] w-full" />
             </div>
 
             {/* Budget */}
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm">
               <h2 className="text-xl font-semibold mb-5">Estimated Budget</h2>
 
-              <Input placeholder="$50,000" className="h-12 bg-[#F2F3FF]" />
+              <Input
+                placeholder="$50,000"
+                className="h-12 bg-[#F2F3FF] w-full"
+              />
+
+              <h2 className="text-xl font-semibold mb-5 mt-5">
+                Target Audience
+              </h2>
+
+              <Input
+                placeholder="e.g., Tech Enthusiasts, Entrepreneurs"
+                className="h-12 bg-[#F2F3FF] w-full"
+              />
             </div>
 
             {/* Tags */}
@@ -83,7 +104,7 @@ const AddIdeaPage = () => {
 
               <Input
                 placeholder="SaaS, Mobile, Web3..."
-                className="h-12 bg-[#F2F3FF]"
+                className="h-12 w-full bg-[#F2F3FF]"
               />
             </div>
           </div>
@@ -136,7 +157,7 @@ const AddIdeaPage = () => {
 
               <Input
                 placeholder="https://unsplash.com/photos/your-concept-visual"
-                className="h-14 w-120 rounded-xl"
+                className="h-14 w-full rounded-xl"
               />
             </div>
 
