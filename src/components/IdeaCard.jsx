@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 const IdeaCard = ({ idea }) => {
-  const { imageUrl, title, tags, detailedDescription } = idea;
+  const { imageUrl, title, tags, detailedDescription, estimatedBudget } = idea;
   return (
     <div className="max-w-sm rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
       {/* Image */}
@@ -25,7 +25,7 @@ const IdeaCard = ({ idea }) => {
 
       {/* Content */}
       <div className="p-5">
-        <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+        <h2 className="text-2xl font-semibold text-gray-900">{title}</h2>
 
         <p className="text-gray-500 text-sm mt-2 line-clamp-3">
           {detailedDescription}
@@ -36,7 +36,7 @@ const IdeaCard = ({ idea }) => {
           {/* Maturity */}
           <div className="flex items-center gap-2 text-sm text-gray-600">
             <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-            Maturity: High
+            Budget: ${estimatedBudget}
           </div>
 
           {/* Link */}
