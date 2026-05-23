@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const IdeaCard = ({ idea }) => {
   const { imageUrl, title, tags, detailedDescription, estimatedBudget } = idea;
@@ -40,9 +41,16 @@ const IdeaCard = ({ idea }) => {
           </div>
 
           {/* Link */}
-          <button className="flex items-center gap-1 text-indigo-600 text-sm font-medium hover:gap-2 transition-all">
-            View Details <ArrowRight size={16} />
-          </button>
+
+          <Link
+            href={`/ideas/${idea._id}`}
+            className="flex items-center gap-1 text-indigo-600 text-sm font-medium hover:gap-2 transition-all"
+          >
+            {" "}
+            <button className="flex items-center gap-1 text-indigo-600 text-sm font-medium hover:gap-2 transition-all cursor-pointer">
+              View Details <ArrowRight size={16} />
+            </button>
+          </Link>
         </div>
       </div>
     </div>
