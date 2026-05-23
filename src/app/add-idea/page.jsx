@@ -6,12 +6,19 @@ import { SiGoogledocs } from "react-icons/si";
 import { IoRocketOutline } from "react-icons/io5";
 
 const AddIdeaPage = () => {
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic here (e.g., send data to backend)
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log("Form Data:", data);
+    const res = await fetch("http://localhost:5000/ideas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
   };
 
   return (
