@@ -189,7 +189,7 @@ const AddIdeaPage = () => {
                 </p>
 
                 <Input
-                  placeholder="https://unsplash.com/photos/your-concept-visual"
+                  placeholder="https://cdn.pixabay.com/photos/your-concept-visual"
                   className="h-14 w-full rounded-xl"
                   name="imageUrl"
                 />
