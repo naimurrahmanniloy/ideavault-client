@@ -4,6 +4,8 @@ import { Button, Input, Label, Separator } from "@heroui/react";
 import { ShieldCheck } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import { IoRocketOutline } from "react-icons/io5";
+import { toast } from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 const AddIdeaPage = () => {
   const onSubmit = async (e) => {
@@ -19,6 +21,8 @@ const AddIdeaPage = () => {
       body: JSON.stringify(data),
     });
     const result = await res.json();
+    toast.success(`Idea launched successfully!`);
+    redirect("/ideas");
   };
 
   return (
