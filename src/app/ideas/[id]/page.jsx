@@ -9,6 +9,7 @@ import {
   Trash2,
   Check,
 } from "lucide-react";
+import { Button } from "@heroui/react";
 
 const IdeasDetailPage = async ({ params }) => {
   const { id } = await params;
@@ -42,7 +43,6 @@ const IdeasDetailPage = async ({ params }) => {
     shortDescription,
     detailedDescription,
     imageUrl,
-    category,
     targetAudience,
     tags,
     estimatedBudget,
@@ -158,7 +158,7 @@ const IdeasDetailPage = async ({ params }) => {
                         />
 
                         <div className="mt-4 flex justify-end">
-                          <button className="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700">
+                          <button className="cursor-pointer rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700">
                             Post Comment
                           </button>
                         </div>
@@ -213,14 +213,14 @@ const IdeasDetailPage = async ({ params }) => {
           </div>
           {/* Right side section */}
           <div>
-            <div className="w-full max-w-85bg-[#f4f7ff] flex flex-col gap-6 font-sans min-h-screen p-10 rounded-3xl border border-gray-200 shadow-sm">
+            <div className=" w-full max-w-7  flex flex-col gap-6 p-10 rounded-3xl border border-gray-200 shadow-sm ">
               {/* 1. User Profile Header */}
               <div className="bg-white rounded-2xl shadow-sm border  p-5 flex items-center gap-3.5">
-                <img
+                {/* <img
                   src="/api/placeholder/48/48"
                   alt="Dr. Elena Volkov"
                   className="w-11 h-11 rounded-full object-cover shadow-sm"
-                />
+                /> */}
                 <div className="flex flex-col">
                   <h3 className="font-semibold text-gray-900 text-sm leading-tight">
                     Dr. Elena Volkov
@@ -232,52 +232,55 @@ const IdeasDetailPage = async ({ params }) => {
               </div>
 
               {/* 2. Main Action Card */}
-              <div className="bg-[#eef2ff] rounded-[24px] p-6 text-center space-y-6 ">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 tracking-tight">
+              <div className="rounded-[24px] p-6 text-center space-y-6 ">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">
                   Support this Idea
                 </h2>
 
-                <div className="flex flex-col gap-2.5 mb-7">
+                <div className="flex flex-col gap-5 mb-7 ">
                   {/* Primary Action */}
-                  <button className="w-full bg-[#4f46e5] hover:bg-[#4338ca] text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
+                  {/* <button className="w-full border font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 cursor-pointer ">
                     <HeartHandshake size={18} />
-                    <span className="text-sm">Pledge Funding</span>
-                  </button>
-
+                    <span className="text-lg ">Pledge Funding</span>
+                  </button> */}
+                  <Button variant="outline" className="w-full ">
+                    <HeartHandshake size={18} />
+                    <span className="text-lg ">Pledge Funding</span>
+                  </Button>
                   {/* Secondary Action */}
-                  <button className="w-full bg-transparent border border-[#a5b4fc] text-[#4f46e5] font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 hover:bg-white/50 transition-colors">
+                  <Button variant="outline" className="w-full">
                     <Bookmark size={18} />
-                    <span className="text-sm">Save to Vault</span>
-                  </button>
+                    <span className="text-lg">Save to Vault</span>
+                  </Button>
 
                   {/* Tertiary Action */}
-                  <button className="w-full bg-[#dbeafe]/50 text-[#475569] font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 hover:bg-[#dbeafe] transition-colors">
+                  <Button variant="outline" className="w-full">
                     <Pencil size={18} />
-                    <span className="text-sm">Update Idea</span>
-                  </button>
+                    <span className="text-lg">Update Idea</span>
+                  </Button>
 
                   {/* Ghost Action */}
-                  <button className="w-full text-[#64748b] font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100/50 transition-colors">
+                  <Button variant="outline" className="w-full">
                     <Share2 size={18} />
-                    <span className="text-sm">Share Innovation</span>
-                  </button>
+                    <span className="text-lg">Share Innovation</span>
+                  </Button>
                 </div>
 
                 {/* Statistics Row */}
-                <div className="border-t border-[#c7d2fe] pt-5 flex justify-between px-1 mt-10">
-                  <div className="text-center flex flex-col gap-0.5">
+                <div className="border-t border-[#c7d2fe] pt-5 flex justify-between px-1 mt-10 ">
+                  <div className="text-center flex flex-col gap-0.5 mt-4">
                     <div className="text-xl font-bold text-gray-900">1.2k</div>
                     <div className="text-[9px] font-bold text-gray-500 tracking-wider">
                       FOLLOWERS
                     </div>
                   </div>
-                  <div className="text-center flex flex-col gap-0.5">
+                  <div className="text-center flex flex-col gap-0.5 mt-4">
                     <div className="text-xl font-bold text-gray-900">48</div>
                     <div className="text-[9px] font-bold text-gray-500 tracking-wider">
                       MENTORS
                     </div>
                   </div>
-                  <div className="text-center flex flex-col gap-0.5">
+                  <div className="text-center flex flex-col gap-0.5 mt-4">
                     <div className="text-xl font-bold text-gray-900">8</div>
                     <div className="text-[9px] font-bold text-gray-500 tracking-wider">
                       PATENTS
