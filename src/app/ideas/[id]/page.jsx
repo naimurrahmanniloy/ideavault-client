@@ -214,7 +214,7 @@ const IdeasDetailPage = async ({ params }) => {
           </div>
           {/* Right side section */}
           <div>
-            <div className=" w-full max-w-7  flex flex-col gap-6 p-10 rounded-3xl border border-gray-200 shadow-sm ">
+            <div className=" w-full   flex flex-col gap-6 p-10 rounded-3xl border border-gray-200 shadow-sm ">
               {/* 1. User Profile Header */}
               <div className="bg-white rounded-2xl shadow-sm border  p-5 flex items-center gap-3.5">
                 {/* <img

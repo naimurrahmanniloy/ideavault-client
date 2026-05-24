@@ -25,6 +25,11 @@ const Navbar = () => {
           My Ideas
         </li>
       </Link>
+      <Link href="/signup">
+        <li className="hover:text-[#4441CC]/70 transition duration-300 ease-in-out">
+          Sign Up
+        </li>
+      </Link>
     </>
   );
   return (

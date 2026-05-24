@@ -10,6 +10,8 @@ import {
   Surface,
   TextField,
 } from "@heroui/react";
+import { redirect } from "next/navigation";
+import { toast } from "react-hot-toast";
 import { IoRocketOutline } from "react-icons/io5";
 import { SiGoogledocs } from "react-icons/si";
 
@@ -25,13 +27,23 @@ export function UpdateModal({ idea }) {
     problemStatement,
     proposedSolution,
     category,
+    _id,
   } = idea;
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic here (e.g., send data to backend)
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log("Form Data:", data);
+
+    const res = await fetch(`http://localhost:5000/ideas/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+    toast.success(`Idea updated successfully!`);
   };
   return (
     <Modal>
