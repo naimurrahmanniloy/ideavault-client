@@ -1,8 +1,15 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
+import { Avatar } from "@heroui/react";
 import Link from "next/link";
 
 const Navbar = () => {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  const handleSignOut = async () => {
+    await authClient.signOut();
+  };
   const link = (
     <>
       <Link href="/">
@@ -15,21 +22,33 @@ const Navbar = () => {
           Ideas
         </li>
       </Link>
-      <Link href="/add-idea">
-        <li className="hover:text-[#4441CC]/80 transition duration-300 ease-in-out">
-          Add Idea
-        </li>
-      </Link>
-      <Link href="/my-ideas">
-        <li className="hover:text-[#4441CC]/70 transition duration-300 ease-in-out">
-          My Ideas
-        </li>
-      </Link>
-      <Link href="/signup">
-        <li className="hover:text-[#4441CC]/70 transition duration-300 ease-in-out">
-          Sign Up
-        </li>
-      </Link>
+      {user ? (
+        <>
+          <Link href="/add-idea">
+            <li className="hover:text-[#4441CC]/80 transition duration-300 ease-in-out">
+              Add Idea
+            </li>
+          </Link>
+          <Link href="/my-ideas">
+            <li className="hover:text-[#4441CC]/70 transition duration-300 ease-in-out">
+              My Ideas
+            </li>
+          </Link>
+        </>
+      ) : (
+        <>
+          <Link href="/login">
+            <li className="hover:text-[#4441CC]/70 transition duration-300 ease-in-out">
+              Login
+            </li>
+          </Link>
+          <Link href="/signup">
+            <li className="hover:text-[#4441CC]/70 transition duration-300 ease-in-out">
+              Sign Up
+            </li>
+          </Link>
+        </>
+      )}
     </>
   );
   return (
@@ -69,32 +88,40 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar "
-            >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
-              </div>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z--1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a className="justify-between">Profile</a>
-              </li>
+          {user ? (
+            <>
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar "
+                >
+                  <Avatar>
+                    <Avatar.Image
+                      referrerPolicy="no-referrer"
+                      alt="John Doe"
+                      src={user?.image}
+                    />
+                    <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                  </Avatar>
+                </div>
+                <ul
+                  tabIndex="-1"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z--1 mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <a className="justify-between">My Profile</a>
+                  </li>
 
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
+                  <li>
+                    <a onClick={handleSignOut}>Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

@@ -26,6 +26,11 @@ export default function RegisterPage() {
       toast.error(error);
     }
   };
+  const GoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <div className="min-h-screen bg-[#f5f2ff] flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md rounded-[28px] border border-[#d9d2ff] bg-white/80 backdrop-blur-sm shadow-sm px-8 py-10">
@@ -41,7 +46,10 @@ export default function RegisterPage() {
         </div>
 
         {/* Google Button */}
-        <button className="mt-8 w-full h-13 rounded-xl border border-[#d7d7e2] bg-white hover:bg-gray-50 transition-all flex items-center justify-center gap-3 text-[15px] font-medium text-[#111827] cursor-pointer">
+        <button
+          className="mt-8 w-full h-13 rounded-xl border border-[#d7d7e2] bg-white hover:bg-gray-50 transition-all flex items-center justify-center gap-3 text-[15px] font-medium text-[#111827] cursor-pointer"
+          onClick={GoogleSignIn}
+        >
           <FcGoogle />
           Sign up with Google
         </button>

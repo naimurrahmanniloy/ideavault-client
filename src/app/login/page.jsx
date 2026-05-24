@@ -1,10 +1,39 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export default function LoginPage() {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(formData.entries());
+    const { data, error } = await authClient.signIn.email({
+      email: user.email,
+      password: user.password,
+    });
+    if (data) {
+      toast.success("Login Successful");
+      redirect("/");
+    }
+    if (error) {
+      toast.error(error);
+    }
+  };
+  const GoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+
+    if (data) {
+      toast.success("Google Login Successful");
+      redirect("/");
+    }
+  };
   return (
     <div className="min-h-screen w-full bg-slate-50 flex items-center justify-center p-0 sm:p-4 md:p-6 antialiased">
       {/* Main Split Layout Container */}
@@ -44,10 +73,7 @@ export default function LoginPage() {
             </div>
 
             {/* Form Fields */}
-            <form
-              className="flex flex-col gap-4"
-              onSubmit={(e) => e.preventDefault()}
-            >
+            <form className="flex flex-col gap-4" onSubmit={onSubmit}>
               {/* Email Input Field */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-slate-700">
@@ -195,7 +221,8 @@ export default function LoginPage() {
             {/* Google Sign-in Button */}
             <button
               type="button"
-              className="w-full h-11 bg-[#f8fafc] border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold rounded-xl text-sm flex items-center justify-center gap-2.5 transition-colors"
+              onClick={GoogleSignIn}
+              className="w-full h-11 cursor-pointer bg-[#f8fafc] border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold rounded-xl text-sm flex items-center justify-center gap-2.5 transition-colors"
             >
               <svg className="h-4 w-4" viewBox="0 0 24 24">
                 <path
