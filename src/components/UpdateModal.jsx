@@ -199,7 +199,7 @@ export function UpdateModal({ idea }) {
                         <textarea
                           defaultValue={problemStatement}
                           placeholder="Identify the core pain point your idea addresses..."
-                          className="w-full min-h-[140px] bg-transparent outline-none text-gray-600 placeholder:text-gray-400 resize-none"
+                          className="w-full min-h-35 bg-transparent outline-none text-gray-600 placeholder:text-gray-400 resize-none"
                           name="problemStatement"
                         />
                       </div>
@@ -213,7 +213,7 @@ export function UpdateModal({ idea }) {
                         <textarea
                           defaultValue={proposedSolution}
                           placeholder="How does your innovation solve this? Be specific about the 'magic'..."
-                          className="w-full min-h-[140px] bg-transparent outline-none text-gray-600 placeholder:text-gray-400 resize-none"
+                          className="w-full min-h-35 bg-transparent outline-none text-gray-600 placeholder:text-gray-400 resize-none"
                           name="proposedSolution"
                         />
                       </div>

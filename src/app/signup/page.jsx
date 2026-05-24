@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import { Eye, Lock, Mail, Image as ImageIcon, User } from "lucide-react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
@@ -174,9 +175,11 @@ export default function RegisterPage() {
         {/* Login */}
         <p className="text-center text-[14px] text-[#6b7280] mt-7">
           Already have an account?{" "}
-          <span className="text-[#4F46E5] font-semibold cursor-pointer hover:underline">
-            Login
-          </span>
+          <Link href={"/login"}>
+            <span className="text-[#4F46E5] font-semibold cursor-pointer hover:underline">
+              Login
+            </span>
+          </Link>
         </p>
       </div>
     </div>
