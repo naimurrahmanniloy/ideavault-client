@@ -10,6 +10,7 @@ import {
   Check,
 } from "lucide-react";
 import { Button } from "@heroui/react";
+import { UpdateModal } from "@/components/UpdateModal";
 
 const IdeasDetailPage = async ({ params }) => {
   const { id } = await params;
@@ -254,10 +255,7 @@ const IdeasDetailPage = async ({ params }) => {
                   </Button>
 
                   {/* Tertiary Action */}
-                  <Button variant="outline" className="w-full">
-                    <Pencil size={18} />
-                    <span className="text-lg">Update Idea</span>
-                  </Button>
+                  <UpdateModal idea={idea} />
 
                   {/* Ghost Action */}
                   <Button variant="outline" className="w-full">
