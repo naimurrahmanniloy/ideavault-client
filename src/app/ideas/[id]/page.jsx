@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+
 import {
   HeartHandshake,
   Bookmark,
@@ -11,31 +11,10 @@ import {
 } from "lucide-react";
 import { Button } from "@heroui/react";
 import { UpdateModal } from "@/components/UpdateModal";
+import CommentForm from "@/components/CommentForm";
 
 const IdeasDetailPage = async ({ params }) => {
   const { id } = await params;
-  const comments = [
-    {
-      id: 1,
-      name: "Marcus Chen",
-      role: "Angel Investor",
-      time: "2 hours ago",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
-      comment:
-        "The energy reduction claims are bold. Do you have comparative data from the lab prototypes yet? I'd love to see the brine disposal strategy as well.",
-    },
-    {
-      id: 2,
-      name: "Sarah Jenkins",
-      role: "Marine Biologist",
-      time: "5 hours ago",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop",
-      comment:
-        "Bio-mimetic osmotic structures are definitely the way forward. Have you considered the impact of bio-fouling on the neural membrane over long-term deployment?",
-    },
-  ];
 
   const data = await fetch(`http://localhost:5000/ideas/${id}`);
   const idea = await data.json();
@@ -50,6 +29,8 @@ const IdeasDetailPage = async ({ params }) => {
     problemStatement,
     proposedSolution,
   } = idea;
+  const res = await fetch(`http://localhost:5000/comments`);
+  const result = await res.json();
 
   return (
     <div className="min-h-screen bg-[#FAF8FF]">
@@ -151,61 +132,7 @@ const IdeasDetailPage = async ({ params }) => {
                       </div>
 
                       {/* Input Area */}
-                      <div className="flex-1">
-                        <textarea
-                          rows={4}
-                          placeholder="Share your professional feedback..."
-                          className="w-full p-10 resize-none rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm outline-none transition focus:border-indigo-400"
-                        />
-
-                        <div className="mt-4 flex justify-end">
-                          <button className="cursor-pointer rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700">
-                            Post Comment
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Comments */}
-                    <div className="mt-8 space-y-5">
-                      {comments.map((comment) => (
-                        <div
-                          key={comment.id}
-                          className="rounded-3xl bg-white/60 p-5 shadow-sm backdrop-blur"
-                        >
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex gap-4">
-                              <img
-                                src={comment.image}
-                                alt={comment.name}
-                                className="h-12 w-12 rounded-full object-cover"
-                              />
-
-                              <div>
-                                <h3 className="font-semibold text-slate-900">
-                                  {comment.name}
-                                </h3>
-
-                                <p className="text-xs text-slate-500">
-                                  {comment.time} • {comment.role}
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Action Icons */}
-                            <div className="flex items-center gap-3 text-slate-400">
-                              <button className="hover:text-slate-700">
-                                ✏️
-                              </button>
-                              <button className="hover:text-red-500">🗑️</button>
-                            </div>
-                          </div>
-
-                          <p className="mt-5 text-[15px] leading-7 text-slate-600">
-                            {comment.comment}
-                          </p>
-                        </div>
-                      ))}
+                      <CommentForm result={result} />
                     </div>
                   </section>
                 </div>
@@ -217,11 +144,11 @@ const IdeasDetailPage = async ({ params }) => {
             <div className=" w-full   flex flex-col gap-6 p-10 rounded-3xl border border-gray-200 shadow-sm ">
               {/* 1. User Profile Header */}
               <div className="bg-white rounded-2xl shadow-sm border  p-5 flex items-center gap-3.5">
-                {/* <img
+                <img
                   src="/api/placeholder/48/48"
                   alt="Dr. Elena Volkov"
                   className="w-11 h-11 rounded-full object-cover shadow-sm"
-                /> */}
+                />
                 <div className="flex flex-col">
                   <h3 className="font-semibold text-gray-900 text-sm leading-tight">
                     Dr. Elena Volkov
@@ -239,11 +166,6 @@ const IdeasDetailPage = async ({ params }) => {
                 </h2>
 
                 <div className="flex flex-col gap-5 mb-7 ">
-                  {/* Primary Action */}
-                  {/* <button className="w-full border font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 cursor-pointer ">
-                    <HeartHandshake size={18} />
-                    <span className="text-lg ">Pledge Funding</span>
-                  </button> */}
                   <Button variant="outline" className="w-full ">
                     <HeartHandshake size={18} />
                     <span className="text-lg ">Pledge Funding</span>
