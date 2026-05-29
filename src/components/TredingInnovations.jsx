@@ -12,7 +12,9 @@ export default function TrendingInnovations() {
   useEffect(() => {
     const getTrendingData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/ideas");
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/trending-ideas`,
+        );
         const data = await response.json();
         setInnovations(data); //
       } catch (error) {

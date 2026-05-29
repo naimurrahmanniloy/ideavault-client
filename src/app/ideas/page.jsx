@@ -1,7 +1,7 @@
 import IdeaCard from "@/components/IdeaCard";
 
 const IdeasPage = async () => {
-  const data = await fetch("http://localhost:5000/ideas");
+  const data = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas`);
   const ideas = await data.json();
 
   return (

@@ -16,7 +16,7 @@ import CommentForm from "@/components/CommentForm";
 const IdeasDetailPage = async ({ params }) => {
   const { id } = await params;
 
-  const data = await fetch(`http://localhost:5000/ideas/${id}`);
+  const data = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`);
   const idea = await data.json();
   const {
     title,
@@ -29,7 +29,7 @@ const IdeasDetailPage = async ({ params }) => {
     problemStatement,
     proposedSolution,
   } = idea;
-  const res = await fetch(`http://localhost:5000/comments`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`);
   const result = await res.json();
 
   return (

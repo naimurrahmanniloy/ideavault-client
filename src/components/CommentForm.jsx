@@ -12,7 +12,9 @@ const CommentForm = ({ ideaId }) => {
 
   // FETCH COMMENTS
   const fetchComments = async () => {
-    const res = await fetch(`http://localhost:5000/comments/${ideaId}`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${ideaId}`,
+    );
     const data = await res.json();
     setComments(data);
   };
@@ -31,7 +33,7 @@ const CommentForm = ({ ideaId }) => {
 
     const commentData = formData.get("comment");
 
-    const res = await fetch("http://localhost:5000/comments", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
