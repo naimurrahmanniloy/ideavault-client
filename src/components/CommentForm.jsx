@@ -21,7 +21,7 @@ const CommentForm = ({ ideaId }) => {
   // GET COMMENTS
   useEffect(() => {
     if (ideaId) {
-      fetchCommentS();
+      fetchComments();
     }
   }, [ideaId]);
 

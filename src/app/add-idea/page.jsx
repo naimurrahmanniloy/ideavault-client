@@ -5,9 +5,10 @@ import { ShieldCheck } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import { IoRocketOutline } from "react-icons/io5";
 import { toast } from "react-hot-toast";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const AddIdeaPage = () => {
+  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic here (e.g., send data to backend)
@@ -22,7 +23,8 @@ const AddIdeaPage = () => {
     });
     const result = await res.json();
     toast.success(`Idea launched successfully!`);
-    redirect("/ideas");
+
+    router.push("/ideas");
   };
 
   return (
